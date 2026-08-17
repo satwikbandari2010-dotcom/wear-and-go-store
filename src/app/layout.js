@@ -1,5 +1,6 @@
 import './globals.css';
 import SmoothScroll from '../components/SmoothScroll';
+import MobileBottomNav from '../components/MobileBottomNav';
 
 export const metadata = {
   title: 'Jewelry Store | 1-Gram Gold',
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
           </header>
           <main>{children}</main>
         </SmoothScroll>
+        <MobileBottomNav />
       </body>
     </html>
   );
