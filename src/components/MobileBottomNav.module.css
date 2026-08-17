@@ -25,10 +25,11 @@
     align-items: center;
     gap: 4px;
     color: var(--text-secondary);
+    font-family: var(--font-body);
     font-size: 0.65rem;
-    font-weight: 500;
+    font-weight: 400; /* Lighter weight for luxury feel */
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px; /* Slightly wider tracking */
     background: none;
     border: none;
     cursor: pointer;
