@@ -61,16 +61,86 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={`${styles.marqueeSection} reveal`}>
+        <div className={styles.marqueeContainer}>
+          <div className={styles.marqueeTrack}>
+            <span className={styles.marqueeItem}>PURE 1-GRAM GOLD</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>EXQUISITE CRAFTSMANSHIP</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>TIMELESS ELEGANCE</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>FREE WORLDWIDE SHIPPING</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>PURE 1-GRAM GOLD</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>EXQUISITE CRAFTSMANSHIP</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>TIMELESS ELEGANCE</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>FREE WORLDWIDE SHIPPING</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>PURE 1-GRAM GOLD</span>
+            <span className={styles.marqueeDot}>·</span>
+            <span className={styles.marqueeItem}>EXQUISITE CRAFTSMANSHIP</span>
+            <span className={styles.marqueeDot}>·</span>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.featured}>
+        <div className="container">
+          <div className={`${styles.sectionHeader} reveal`}>
+            <h2>Iconic Pieces</h2>
+            <a href="/shop" className={styles.viewAllLink}>View all &rarr;</a>
+          </div>
+          
+          <div className={`${styles.carouselWrapper} reveal reveal-delay-1`}>
+            <button className={`${styles.arrowBtn} ${styles.leftArrow}`} onClick={scrollPrev} aria-label="Scroll left">&#8249;</button>
+            
+            <div className={styles.embla} ref={emblaRef}>
+              <div className={styles.emblaContainer}>
+                {products.map((product) => (
+                  <div key={product.id} className={styles.emblaSlide}>
+                    <div className={styles.featuredCard}>
+                      <div className={styles.cardImageWrapper}>
+                        <a href="/shop" className={`${styles.cardImage} ${styles.primaryImage}`} style={{ backgroundImage: `url('${product.image}')` }} aria-label={product.title}></a>
+                        <a href="/shop" className={`${styles.cardImage} ${styles.secondaryImage}`} style={{ backgroundImage: `url('${product.hoverImage}')` }} aria-label={product.title}></a>
+                        <div className={styles.quickAddWrapper}>
+                          <button className={styles.quickAddBtn}>Add to Bag</button>
+                        </div>
+                      </div>
+                      <div className={styles.cardInfo}>
+                        <h3><a href="/shop">{product.title}</a></h3>
+                        <p>{product.price}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button className={`${styles.arrowBtn} ${styles.rightArrow}`} onClick={scrollNext} aria-label="Scroll right">&#8250;</button>
+          </div>
+        </div>
+      </section>
+
       {/* Editorial Lookbook Section */}
       <section className={styles.editorial}>
         <div className="container">
-          <div className={styles.splitLayout}>
-            <div className={`${styles.splitImage} reveal`} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')` }}></div>
-            <div className={`${styles.splitText} reveal reveal-delay-1`}>
-              <h2>The Heritage Collection</h2>
-              <p>A curated selection of our finest 1-gram gold pieces, designed to be passed down through generations. Our master craftsmen spend hours perfecting the delicate curves and brilliant shine of each piece.</p>
-              <a href="/shop" className="btn-secondary" style={{ marginTop: '2rem', display: 'inline-block' }}>Discover the Collection</a>
+          <div className={`${styles.editorialHeader} reveal`}>
+            <h2>The Heritage Collection</h2>
+            <p className="reveal-delay-1 reveal">A curated selection of our finest 1-gram gold pieces, designed to be passed down through generations.</p>
+          </div>
+          
+          <div className={styles.editorialGrid}>
+            <div className={`${styles.edImage1} reveal`} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')` }}></div>
+            <div className={`${styles.edText1} reveal reveal-delay-1`}>
+              <h3>Artistry in Every Detail</h3>
+              <p>Our master craftsmen spend hours perfecting the delicate curves and brilliant shine of each piece, ensuring that every angle catches the light beautifully. The Heritage collection represents the pinnacle of our design philosophy.</p>
+              <a href="/about" className="btn-secondary" style={{ marginTop: '2rem', display: 'inline-block' }}>Discover Our Story</a>
             </div>
+            <div className={`${styles.edImage2} reveal reveal-delay-2`} style={{ backgroundImage: `url('https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=800&q=80')` }}></div>
           </div>
         </div>
       </section>

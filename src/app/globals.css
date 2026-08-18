@@ -152,7 +152,8 @@ button {
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* Global Header (Ultra Premium Sleek) */
-.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.25rem 0; }
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.25rem 0; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.header-hidden { transform: translateY(-100%); }
 .header-content { display: flex; justify-content: space-between; align-items: center; position: relative; }
 .nav { position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-links { list-style: none; display: flex; gap: 2.5rem; }
