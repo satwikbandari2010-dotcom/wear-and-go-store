@@ -122,10 +122,39 @@
   margin-bottom: 1.5rem;
 }
 
-.shippingInfo {
+.descHeading {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.trustItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.trustIcon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.trustText {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  text-align: center;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
 /* Sticky Footer (Mobile Only) */

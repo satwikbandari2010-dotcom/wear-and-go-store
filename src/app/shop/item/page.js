@@ -51,20 +51,20 @@ export default function ProductItem() {
         <div className={styles.productGrid}>
           {/* Left Column: Images */}
           <div className={styles.imageGallery}>
-            <div className={styles.mainImage} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1599643478524-fb66f70d00f8?auto=format&fit=crop&w=1200&q=80')" }}></div>
+            <div className={styles.mainImage} style={{ backgroundImage: "url('/product-gold-1.jpg')" }}></div>
             <div className={styles.subImages}>
-              <div className={styles.subImage} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80')" }}></div>
-              <div className={styles.subImage} style={{ backgroundImage: "url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80')" }}></div>
+              <div className={styles.subImage} style={{ backgroundImage: "url('/product-gold-2.jpg')" }}></div>
+              <div className={styles.subImage} style={{ backgroundImage: "url('/product-gold-1.jpg')" }}></div>
             </div>
           </div>
 
           {/* Right Column: Info */}
           <div className={styles.productInfo}>
             <div className={styles.breadcrumb}>
-              <a href="/">Home</a> / <a href="/shop">Shop</a> / Classic 1g Pendant
+              <a href="/">Home</a> / <a href="/shop">Shop</a> / Radiant 1g Gold Earrings
             </div>
             <div className={styles.titleArea}>
-              <h1 className={styles.title}>Classic 1g Pendant</h1>
+              <h1 className={styles.title}>Radiant 1g Gold Earrings</h1>
               <button onClick={handleShare} className={styles.shareBtn} aria-label="Share">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
@@ -76,20 +76,34 @@ export default function ProductItem() {
             <p className={styles.price}>$85.00</p>
 
             <div className={styles.description}>
-              <p>An everyday essential. This minimalist 1-gram gold pendant is designed to catch the light beautifully while remaining completely weightless on the collarbone.</p>
-              <ul>
-                <li>100% certified 1-gram gold</li>
-                <li>Waterproof & tarnish resistant</li>
-                <li>Includes an adjustable 16-18" chain</li>
-              </ul>
+              <h3 className={styles.descHeading}>The 1-Gram Gold Revolution</h3>
+              <p>Why choose between exorbitantly expensive solid gold and cheap, fading imitation jewelry?</p>
+              <p>Crafted with a pure 1-gram gold micro-plating over a hypoallergenic core, this piece gives you the exact radiant look, heavy feel, and timeless elegance of 24k solid gold. Whether you're elevating your daily office wear or completing a stunning wedding outfit, you deserve that flawless, golden-hour glow every single day.</p>
+              <p><strong>Look like a million bucks. Wear it without worry.</strong></p>
             </div>
 
             <button className={`btn-primary ${styles.addToBagBtn}`} onClick={handleAddToBag}>
               Add to Bag - $85.00
             </button>
             
-            <div className={styles.shippingInfo}>
-              <p>Free standard shipping on all orders.</p>
+            {/* Trust Grid */}
+            <div className={styles.trustGrid}>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>🔄</span>
+                <span className={styles.trustText}>7-Day Easy Replacements</span>
+              </div>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>💰</span>
+                <span className={styles.trustText}>100% Refund Guarantee</span>
+              </div>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>✨</span>
+                <span className={styles.trustText}>Waterproof & Anti-Tarnish</span>
+              </div>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>🛡️</span>
+                <span className={styles.trustText}>Skin-Friendly (Hypoallergenic)</span>
+              </div>
             </div>
           </div>
         </div>
