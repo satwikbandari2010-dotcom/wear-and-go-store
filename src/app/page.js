@@ -45,9 +45,14 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchLiveProducts() {
-      const live = await getProducts();
-      if (live && live.length > 0) {
-        setProducts(live);
+      try {
+        const res = await fetch('/api/products');
+        const live = await res.json();
+        if (live && live.length > 0) {
+          setProducts(live);
+        }
+      } catch (e) {
+        console.error("Error fetching live products:", e);
       }
     }
     fetchLiveProducts();
