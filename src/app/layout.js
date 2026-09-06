@@ -2,6 +2,8 @@ import './globals.css';
 import SmoothScroll from '../components/SmoothScroll';
 import MobileBottomNav from '../components/MobileBottomNav';
 import SmartHeader from '../components/SmartHeader';
+import CartDrawer from '../components/CartDrawer';
+import { CartProvider } from '../context/CartContext';
 
 export const metadata = {
   title: 'Jewelry Store | 1-Gram Gold',
@@ -12,11 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SmoothScroll>
-          <SmartHeader />
-          <main>{children}</main>
-        </SmoothScroll>
-        <MobileBottomNav />
+        <CartProvider>
+          <SmoothScroll>
+            <SmartHeader />
+            <main>{children}</main>
+          </SmoothScroll>
+          <MobileBottomNav />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

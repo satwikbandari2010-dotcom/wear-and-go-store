@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCart } from '../context/CartContext';
 import styles from './MobileBottomNav.module.css';
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const { totalCount, setIsCartOpen } = useCart();
 
   return (
     <div className={styles.bottomNav}>
@@ -26,14 +28,14 @@ export default function MobileBottomNav() {
         <span>Shop</span>
       </Link>
 
-      <button className={styles.navItem}>
+      <button className={styles.navItem} onClick={() => setIsCartOpen(true)}>
         <div className={styles.cartIconWrapper}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
-          <span className={styles.badge}>0</span>
+          <span className={styles.badge}>{totalCount}</span>
         </div>
         <span>Bag</span>
       </button>

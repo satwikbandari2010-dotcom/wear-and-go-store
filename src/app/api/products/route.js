@@ -6,7 +6,7 @@ export async function GET() {
 
   const query = `
     query Products {
-      products(first: 10) {
+      products(first: 20) {
         edges {
           node {
             id
@@ -25,6 +25,14 @@ export async function GET() {
                 }
               }
             }
+            variants(first: 1) {
+              edges {
+                node {
+                  id
+                  availableForSale
+                }
+              }
+            }
           }
         }
       }
@@ -38,7 +46,8 @@ export async function GET() {
         'Content-Type': 'application/json',
         'X-Shopify-Storefront-Access-Token': key
       },
-      body: JSON.stringify({ query })
+      body: JSON.stringify({ query }),
+      next: { revalidate: 60 }
     });
 
     const body = await result.json();
@@ -50,13 +59,20 @@ export async function GET() {
 
     const formattedProducts = body?.data?.products?.edges.map((edge) => {
       const product = edge.node;
-      const images = product.images.edges;
+      const images = product.images?.edges || [];
+      const defaultVariant = product.variants?.edges[0]?.node;
+      const rawPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+
       return {
         id: product.id,
         title: product.title,
-        price: `$${parseFloat(product.priceRange.minVariantPrice.amount).toFixed(2)}`,
+        handle: product.handle,
+        rawPrice: rawPrice,
+        price: `₹${rawPrice.toLocaleString('en-IN')}`,
         image: images[0]?.node?.url || '/product-gold-1.jpg',
         hoverImage: images[1]?.node?.url || images[0]?.node?.url || '/product-gold-2.jpg',
+        variantId: defaultVariant?.id || null,
+        availableForSale: defaultVariant?.availableForSale ?? true
       };
     }) || [];
 

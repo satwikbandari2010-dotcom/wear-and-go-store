@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react';
-import { getProducts } from '../lib/shopify';
+import { useCart } from '../context/CartContext';
 import styles from './page.module.css';
 
 export default function Home() {
+  const { addToCart } = useCart();
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: 'start',
     dragFree: true,
@@ -38,9 +40,9 @@ export default function Home() {
   }, []);
 
   const [products, setProducts] = useState([
-    { id: 1, title: 'Radiant 1g Gold Earrings', price: '$85.00', image: '/product-gold-1.jpg', hoverImage: '/product-gold-2.jpg' },
-    { id: 2, title: 'Minimalist Gold Ring', price: '$95.00', image: 'https://images.unsplash.com/photo-1605100804763-247f67b2548e?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=600&q=80' },
-    { id: 3, title: 'Elegant Drop Earrings', price: '$110.00', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=600&q=80' }
+    { id: 1, title: 'Pink Stone Stud Earring', handle: 'pink-stone-stud-earring', price: '₹699.00', rawPrice: 699, image: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/2.jpg?v=1787744806', hoverImage: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/1.jpg?v=1787744214', variantId: 'gid://shopify/ProductVariant/48387646324994' },
+    { id: 2, title: 'Green Stone Stud Earring', handle: 'green-stone-stud-earring', price: '₹699.00', rawPrice: 699, image: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Green_1.jpg?v=1788282689', hoverImage: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Green_2.jpg?v=1788282790', variantId: 'gid://shopify/ProductVariant/48424026964226' },
+    { id: 3, title: 'Ruby Blossom Jewellery Set', handle: 'ruby-blossom-jewellery-set', price: '₹999.00', rawPrice: 999, image: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Necklace_1.jpg?v=1788292188', hoverImage: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Necklace_2.jpg?v=1788292225', variantId: 'gid://shopify/ProductVariant/48424300183810' }
   ]);
 
   useEffect(() => {
@@ -113,23 +115,36 @@ export default function Home() {
             
             <div className={styles.embla} ref={emblaRef}>
               <div className={styles.emblaContainer}>
-                {products.map((product) => (
-                  <div key={product.id} className={styles.emblaSlide}>
-                    <div className={styles.featuredCard}>
-                      <div className={styles.cardImageWrapper}>
-                        <a href="/shop" className={`${styles.cardImage} ${styles.primaryImage}`} style={{ backgroundImage: `url('${product.image}')` }} aria-label={product.title}></a>
-                        <a href="/shop" className={`${styles.cardImage} ${styles.secondaryImage}`} style={{ backgroundImage: `url('${product.hoverImage}')` }} aria-label={product.title}></a>
-                        <div className={styles.quickAddWrapper}>
-                          <button className={styles.quickAddBtn}>Add to Bag</button>
+                {products.map((product) => {
+                  const productHref = product.handle ? `/shop/${product.handle}` : '/shop';
+                  return (
+                    <div key={product.id} className={styles.emblaSlide}>
+                      <div className={styles.featuredCard}>
+                        <div className={styles.cardImageWrapper}>
+                          <Link href={productHref} className={`${styles.cardImage} ${styles.primaryImage}`} style={{ backgroundImage: `url('${product.image}')` }} aria-label={product.title}></Link>
+                          <Link href={productHref} className={`${styles.cardImage} ${styles.secondaryImage}`} style={{ backgroundImage: `url('${product.hoverImage}')` }} aria-label={product.title}></Link>
+                          <div className={styles.quickAddWrapper}>
+                            <button 
+                              className={styles.quickAddBtn}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (product.variantId) {
+                                  addToCart(product, 1);
+                                }
+                              }}
+                            >
+                              Add to Bag
+                            </button>
+                          </div>
+                        </div>
+                        <div className={styles.cardInfo}>
+                          <h3><Link href={productHref}>{product.title}</Link></h3>
+                          <p>{product.price}</p>
                         </div>
                       </div>
-                      <div className={styles.cardInfo}>
-                        <h3><a href="/shop">{product.title}</a></h3>
-                        <p>{product.price}</p>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

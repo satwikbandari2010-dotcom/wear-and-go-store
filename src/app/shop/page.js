@@ -7,8 +7,8 @@ import styles from './shop.module.css';
 
 export default function Shop() {
   const [products, setProducts] = useState([
-    { id: 1, title: 'Radiant 1g Gold Earrings', price: '$85.00', image: '/product-gold-1.jpg', hoverImage: '/product-gold-2.jpg' },
-    { id: 2, title: 'Minimalist Gold Ring', price: '$95.00', image: 'https://images.unsplash.com/photo-1605100804763-247f67b2548e?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=600&q=80' },
+    { id: 1, title: 'Pink Stone Stud Earring', handle: 'pink-stone-stud-earring', price: '₹699.00', rawPrice: 699, image: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/2.jpg?v=1787744806', hoverImage: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/1.jpg?v=1787744214', variantId: 'gid://shopify/ProductVariant/48387646324994' },
+    { id: 2, title: 'Green Stone Stud Earring', handle: 'green-stone-stud-earring', price: '₹699.00', rawPrice: 699, image: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Green_1.jpg?v=1788282689', hoverImage: 'https://cdn.shopify.com/s/files/1/0834/6818/9954/files/Green_2.jpg?v=1788282790', variantId: 'gid://shopify/ProductVariant/48424026964226' },
   ]);
 
   // Fetch live products on mount
@@ -72,11 +72,15 @@ export default function Shop() {
           {products.map((product, index) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               index={index}
               title={product.title}
               price={product.price}
+              rawPrice={product.rawPrice}
               image={product.image}
               hoverImage={product.hoverImage}
+              handle={product.handle}
+              variantId={product.variantId}
             />
           ))}
         </div>

@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useCart } from '../context/CartContext';
 
 export default function SmartHeader() {
+  const { totalCount, setIsCartOpen } = useCart();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -40,7 +42,9 @@ export default function SmartHeader() {
             </ul>
           </nav>
           <div className="nav-actions">
-            <button aria-label="Cart" className="cart-btn">Bag (0)</button>
+            <button aria-label="Cart" className="cart-btn" onClick={() => setIsCartOpen(true)}>
+              Bag ({totalCount})
+            </button>
             <button aria-label="Menu" className="mobile-menu-btn">Menu</button>
           </div>
         </div>
