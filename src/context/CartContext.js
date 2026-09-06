@@ -33,7 +33,7 @@ export function CartProvider({ children }) {
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.rawPrice * item.quantity), 0);
 
-  const addToCart = (product, quantity = 1) => {
+  const addToCart = (product, quantity = 1, isExplicitQuantity = false) => {
     if (!product.variantId) return;
 
     if (typeof window !== 'undefined' && window.navigator?.vibrate) {
@@ -44,7 +44,11 @@ export function CartProvider({ children }) {
       const existingIndex = prevCart.findIndex(item => item.variantId === product.variantId);
       if (existingIndex > -1) {
         const updated = [...prevCart];
-        updated[existingIndex].quantity += quantity;
+        if (isExplicitQuantity) {
+          updated[existingIndex].quantity = quantity;
+        } else {
+          updated[existingIndex].quantity += quantity;
+        }
         return updated;
       } else {
         return [...prevCart, { ...product, quantity }];

@@ -9,7 +9,7 @@ export default function ProductDetail({ params }) {
   const unwrappedParams = use(params);
   const handle = unwrappedParams.handle;
 
-  const { addToCart, buyNow, isCheckingOut } = useCart();
+  const { cart, addToCart, buyNow, isCheckingOut } = useCart();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,6 +18,15 @@ export default function ProductDetail({ params }) {
   const [quantity, setQuantity] = useState(1);
   const [openTab, setOpenTab] = useState('desc');
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+
+  const cartItem = cart?.find(item => item.variantId === selectedVariant?.id);
+
+  // Sync quantity with cart item if it exists in cart
+  useEffect(() => {
+    if (cartItem) {
+      setQuantity(cartItem.quantity);
+    }
+  }, [cartItem?.quantity, selectedVariant?.id]);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -73,6 +82,8 @@ export default function ProductDetail({ params }) {
   const currentPrice = selectedVariant?.price || product?.price || '₹0';
   const currentRawPrice = selectedVariant?.rawPrice || product?.rawPrice || 0;
   const isAvailable = selectedVariant?.availableForSale ?? product?.availableForSale ?? true;
+  const totalAmount = currentRawPrice * quantity;
+  const formattedTotal = `₹${totalAmount.toLocaleString('en-IN')}`;
 
   const handleAdd = () => {
     if (!product || !selectedVariant || !isAvailable) return;
@@ -85,7 +96,7 @@ export default function ProductDetail({ params }) {
       image: product.images[0],
       variantId: selectedVariant.id,
       variantTitle: selectedVariant.title
-    }, quantity);
+    }, quantity, true);
   };
 
   const handleCodBuy = () => {
@@ -226,11 +237,11 @@ export default function ProductDetail({ params }) {
 
               <div className={styles.btnGroup}>
                 <button 
-                  className={`btn-primary ${styles.addToBagBtn}`} 
+                  className={styles.addToBagBtn} 
                   onClick={handleAdd}
                   disabled={!isAvailable}
                 >
-                  {isAvailable ? `Add to Bag · ${currentPrice}` : 'Sold Out'}
+                  {isAvailable ? `Add to Bag · ${formattedTotal}` : 'Sold Out'}
                 </button>
 
                 <button 
@@ -238,7 +249,7 @@ export default function ProductDetail({ params }) {
                   onClick={handleCodBuy}
                   disabled={!isAvailable || isCheckingOut}
                 >
-                  {isCheckingOut ? 'Opening Cash on Delivery...' : '⚡ Buy with Cash on Delivery (COD)'}
+                  {isCheckingOut ? 'Opening Cash on Delivery...' : `Buy with Cash on Delivery (COD) · ${formattedTotal}`}
                 </button>
               </div>
             </div>
