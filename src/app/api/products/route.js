@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const endpoint = `https://wearandgo0.myshopify.com/api/2024-01/graphql.json`;
   const key = "2b2a24dd3b717e7a4a597de302843b32"; 
