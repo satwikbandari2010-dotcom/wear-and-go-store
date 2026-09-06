@@ -38,10 +38,14 @@ export default function SmartHeader() {
             <ul className="nav-links">
               <li><Link href="/">Home</Link></li>
               <li><Link href="/shop">Shop Collection</Link></li>
+              <li><Link href="/track">Track Order</Link></li>
               <li><Link href="/about">Our Story</Link></li>
             </ul>
           </nav>
           <div className="nav-actions">
+            <Link href="/track" className="cart-btn" style={{ marginRight: '0.5rem' }}>
+              Track Order
+            </Link>
             <button aria-label="Cart" className="cart-btn" onClick={() => setIsCartOpen(true)}>
               Bag ({totalCount})
             </button>
