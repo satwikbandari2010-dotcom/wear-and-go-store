@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useRef, useEffect } from 'react';
+import { useCallback, useRef, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { getProducts } from '../lib/shopify';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -25,7 +26,6 @@ export default function Home() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          // Optional: stop observing once revealed so it doesn't animate out and in repeatedly
           observer.unobserve(entry.target);
         }
       });
@@ -37,13 +37,21 @@ export default function Home() {
     return () => elements.forEach((el) => observer.unobserve(el));
   }, []);
 
-  const products = [
+  const [products, setProducts] = useState([
     { id: 1, title: 'Radiant 1g Gold Earrings', price: '$85.00', image: '/product-gold-1.jpg', hoverImage: '/product-gold-2.jpg' },
     { id: 2, title: 'Minimalist Gold Ring', price: '$95.00', image: 'https://images.unsplash.com/photo-1605100804763-247f67b2548e?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=600&q=80' },
-    { id: 3, title: 'Elegant Drop Earrings', price: '$110.00', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=600&q=80' },
-    { id: 4, title: 'Gold Link Bracelet', price: '$130.00', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1574539602047-548bf9557352?auto=format&fit=crop&w=600&q=80' },
-    { id: 5, title: 'Textured Gold Hoops', price: '$80.00', image: 'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?auto=format&fit=crop&w=600&q=80' }
-  ];
+    { id: 3, title: 'Elegant Drop Earrings', price: '$110.00', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80', hoverImage: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=600&q=80' }
+  ]);
+
+  useEffect(() => {
+    async function fetchLiveProducts() {
+      const live = await getProducts();
+      if (live && live.length > 0) {
+        setProducts(live);
+      }
+    }
+    fetchLiveProducts();
+  }, []);
 
   return (
     <div className={styles.home}>
