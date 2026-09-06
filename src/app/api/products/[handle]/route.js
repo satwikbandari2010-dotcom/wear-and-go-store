@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
   const { handle } = await params;
-  const endpoint = `https://wear-and-go-4icc9vpe.myshopify.com/api/2024-01/graphql.json`;
-  const key = "2a19af34c1a096a1b944959bcf660050";
+  const endpoint = `https://wearandgo0.myshopify.com/api/2024-01/graphql.json`;
+  const key = "2b2a24dd3b717e7a4a597de302843b32";
 
   const query = `
     query ProductByHandle($handle: String!) {

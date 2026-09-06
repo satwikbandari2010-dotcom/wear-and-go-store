@@ -1,6 +1,9 @@
+export const SHOPIFY_STORE_DOMAIN = "wearandgo0.myshopify.com";
+export const SHOPIFY_STOREFRONT_TOKEN = "2b2a24dd3b717e7a4a597de302843b32";
+
 export async function shopifyFetch({ query, variables = {} }) {
-  const endpoint = `https://wear-and-go-4icc9vpe.myshopify.com/api/2024-01/graphql.json`;
-  const key = "2a19af34c1a096a1b944959bcf660050"; // Public Storefront API token
+  const endpoint = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`;
+  const key = SHOPIFY_STOREFRONT_TOKEN;
 
   try {
     const result = await fetch(endpoint, {
