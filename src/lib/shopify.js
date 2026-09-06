@@ -1,5 +1,5 @@
 export async function shopifyFetch({ query, variables = {} }) {
-  const endpoint = `https://wearandgo0.myshopify.com/api/2024-01/graphql.json`;
+  const endpoint = `https://wear-and-go-4icc9vpe.myshopify.com/api/2024-01/graphql.json`;
   const key = "2a19af34c1a096a1b944959bcf660050"; // Public Storefront API token
 
   try {
