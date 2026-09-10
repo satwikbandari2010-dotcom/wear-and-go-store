@@ -77,6 +77,7 @@ export default function Shop() {
               title={product.title}
               price={product.price}
               rawPrice={product.rawPrice}
+              compareAtPrice={product.compareAtPrice}
               image={product.image}
               hoverImage={product.hoverImage}
               handle={product.handle}

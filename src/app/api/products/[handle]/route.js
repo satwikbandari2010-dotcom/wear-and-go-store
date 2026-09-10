@@ -21,6 +21,12 @@ export async function GET(request, { params }) {
             currencyCode
           }
         }
+        compareAtPriceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
         images(first: 10) {
           edges {
             node {
@@ -40,6 +46,10 @@ export async function GET(request, { params }) {
               title
               availableForSale
               price {
+                amount
+                currencyCode
+              }
+              compareAtPrice {
                 amount
                 currencyCode
               }
@@ -85,8 +95,13 @@ export async function GET(request, { params }) {
       availableForSale: e.node.availableForSale,
       rawPrice: parseFloat(e.node.price.amount),
       price: `₹${parseFloat(e.node.price.amount).toLocaleString('en-IN')}`,
+      compareAtPrice: e.node.compareAtPrice?.amount ? `₹${parseFloat(e.node.compareAtPrice.amount).toLocaleString('en-IN')}` : null,
       selectedOptions: e.node.selectedOptions || []
     })) || [];
+
+    const rawCompareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount 
+      ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount) 
+      : null;
 
     const formattedProduct = {
       id: product.id,
@@ -96,6 +111,7 @@ export async function GET(request, { params }) {
       descriptionHtml: product.descriptionHtml,
       rawPrice: rawPrice,
       price: `₹${rawPrice.toLocaleString('en-IN')}`,
+      compareAtPrice: rawCompareAtPrice ? `₹${rawCompareAtPrice.toLocaleString('en-IN')}` : null,
       images: images.length > 0 ? images : ['/product-gold-1.jpg'],
       options: product.options?.filter(o => o.name !== 'Title') || [],
       variants: variants,

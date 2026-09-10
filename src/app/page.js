@@ -139,7 +139,10 @@ export default function Home() {
                         </div>
                         <div className={styles.cardInfo}>
                           <h3><Link href={productHref}>{product.title}</Link></h3>
-                          <p>{product.price}</p>
+                          <p>
+                            {product.compareAtPrice && <span style={{ textDecoration: 'line-through', color: '#999', marginRight: '8px' }}>{product.compareAtPrice}</span>}
+                            {product.price}
+                          </p>
                         </div>
                       </div>
                     </div>

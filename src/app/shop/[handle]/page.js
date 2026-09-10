@@ -80,6 +80,7 @@ export default function ProductDetail({ params }) {
   };
 
   const currentPrice = selectedVariant?.price || product?.price || '₹0';
+  const currentCompareAtPrice = selectedVariant?.compareAtPrice || product?.compareAtPrice || null;
   const currentRawPrice = selectedVariant?.rawPrice || product?.rawPrice || 0;
   const isAvailable = selectedVariant?.availableForSale ?? product?.availableForSale ?? true;
   const totalAmount = currentRawPrice * quantity;
@@ -177,7 +178,10 @@ export default function ProductDetail({ params }) {
             </div>
 
             <div className={styles.priceArea}>
-              <p className={styles.price}>{currentPrice}</p>
+              <p className={styles.price}>
+                {currentCompareAtPrice && <span style={{ textDecoration: 'line-through', color: '#999', marginRight: '12px', fontSize: '1.2rem', fontWeight: 400 }}>{currentCompareAtPrice}</span>}
+                {currentPrice}
+              </p>
               <p className={styles.taxNote}>MRP (Inclusive of all taxes)</p>
             </div>
 

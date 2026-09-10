@@ -8,13 +8,19 @@ export async function GET() {
 
   const query = `
     query Products {
-      products(first: 20) {
+      products(first: 50) {
         edges {
           node {
             id
             title
             handle
             priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            compareAtPriceRange {
               minVariantPrice {
                 amount
                 currencyCode
@@ -64,6 +70,9 @@ export async function GET() {
       const images = product.images?.edges || [];
       const defaultVariant = product.variants?.edges[0]?.node;
       const rawPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+      const rawCompareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount 
+        ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount) 
+        : null;
 
       return {
         id: product.id,
@@ -71,6 +80,7 @@ export async function GET() {
         handle: product.handle,
         rawPrice: rawPrice,
         price: `₹${rawPrice.toLocaleString('en-IN')}`,
+        compareAtPrice: rawCompareAtPrice ? `₹${rawCompareAtPrice.toLocaleString('en-IN')}` : null,
         image: images[0]?.node?.url || '/product-gold-1.jpg',
         hoverImage: images[1]?.node?.url || images[0]?.node?.url || '/product-gold-2.jpg',
         variantId: defaultVariant?.id || null,

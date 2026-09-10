@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 import styles from './ProductCard.module.css';
 
-export default function ProductCard({ id, title, price, rawPrice, image, hoverImage, index, handle, variantId }) {
+export default function ProductCard({ id, title, price, rawPrice, compareAtPrice, image, hoverImage, index, handle, variantId }) {
   const { addToCart } = useCart();
 
   const primaryImg = image || '/product-gold-1.jpg';
@@ -39,7 +39,10 @@ export default function ProductCard({ id, title, price, rawPrice, image, hoverIm
       </div>
       <div className={styles.cardInfo}>
         <h3><Link href={productHref}>{title}</Link></h3>
-        <p>{price}</p>
+        <p>
+          {compareAtPrice && <span style={{ textDecoration: 'line-through', color: '#999', marginRight: '8px' }}>{compareAtPrice}</span>}
+          {price}
+        </p>
       </div>
     </div>
   );
