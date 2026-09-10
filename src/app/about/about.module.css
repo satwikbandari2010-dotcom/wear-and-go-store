@@ -1,0 +1,303 @@
+.aboutPage {
+  padding-top: 120px;
+  padding-bottom: 100px;
+  background-color: #ffffff;
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.heroSection {
+  position: relative;
+  text-align: center;
+  padding: 5rem 1.5rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.heroTagline {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1.75rem;
+  font-family: var(--font-heading);
+}
+
+.heroSubtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* Editorial Story Grid */
+.storySection {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.storyRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.storyRowReverse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.storyRowReverse .storyImageWrap {
+  order: 2;
+}
+
+.storyRowReverse .storyContent {
+  order: 1;
+}
+
+.storyImageWrap {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background-color: #f7f7f7;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.storyImageWrap:hover .storyImage {
+  transform: scale(1.04);
+}
+
+.storyContent {
+  padding: 1rem 0;
+}
+
+.chapterNumber {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.storyHeading {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.storyText {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Quote Highlight */
+.quoteBanner {
+  background: #fdfbf7;
+  border-top: 1px solid #f2ecdc;
+  border-bottom: 1px solid #f2ecdc;
+  padding: 5rem 1.5rem;
+  text-align: center;
+  margin: 5rem 0;
+}
+
+.quoteInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quoteText {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.quoteAuthor {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+/* Brand Pillars Grid */
+.pillarsSection {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.pillarsTitle {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-family: var(--font-heading);
+  margin-bottom: 1rem;
+}
+
+.pillarsSubtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 3.5rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  text-align: left;
+}
+
+.pillarCard {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pillarCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-accent);
+  box-shadow: 0 15px 30px rgba(197, 160, 40, 0.08);
+}
+
+.pillarIcon {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  display: inline-block;
+}
+
+.pillarHeading {
+  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.pillarText {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Call to Action */
+.ctaSection {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  max-width: 700px;
+  margin: 3rem auto 0;
+}
+
+.ctaTitle {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-family: var(--font-heading);
+  margin-bottom: 1rem;
+}
+
+.ctaText {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background: #000000;
+  color: #ffffff;
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ctaBtn:hover {
+  background: var(--gold-accent);
+  color: #ffffff;
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(197, 160, 40, 0.3);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .aboutPage {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  .heroSection {
+    padding: 3rem 1.25rem 2rem;
+  }
+
+  .storyRow, 
+  .storyRowReverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .storyRowReverse .storyImageWrap {
+    order: 1;
+  }
+
+  .storyRowReverse .storyContent {
+    order: 2;
+  }
+
+  .storyImageWrap {
+    aspect-ratio: 1/1;
+  }
+
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pillarCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .quoteBanner {
+    padding: 3.5rem 1.25rem;
+    margin: 3rem 0;
+  }
+}
