@@ -29,6 +29,9 @@ export default function SmartHeader() {
 
   return (
     <header className={`site-header ${isVisible ? '' : 'header-hidden'}`}>
+      <div className="announcement-bar">
+        Use code <strong>WEARANDGO15</strong> for 15% off your entire order!
+      </div>
       <div className="container">
         <div className="header-content">
           <Link href="/" className="logo">
