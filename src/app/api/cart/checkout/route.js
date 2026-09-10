@@ -31,7 +31,8 @@ export async function POST(request) {
         lines: lines.map(item => ({
           merchandiseId: item.merchandiseId,
           quantity: parseInt(item.quantity, 10) || 1
-        }))
+        })),
+        discountCodes: ['WEARANDGO15']
       }
     };
 
